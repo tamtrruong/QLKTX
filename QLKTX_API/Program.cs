@@ -118,11 +118,11 @@ var app = builder.Build();
 // PIPELINE XỬ LÝ REQUEST
 // ====================================================
 
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.RoutePrefix = "swagger";
+});
 
 app.UseHttpsRedirection();
 
