@@ -1,11 +1,5 @@
 ﻿using QLKTX_DAO;
-using QLKTX_DTO.Bill;
 using QLKTX_DTO.Tke;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QLKTX_BUS
 {
@@ -18,14 +12,23 @@ namespace QLKTX_BUS
             this.dao = dao;
         }
 
-        public async Task<List<DoanhThu_DTO>> GetDoanhThuNamAsync(int nam)
+        public async Task<decimal> GetTongDoanhThuNamAsync(int nam)
         {
-            return await dao.GetDoanhThuNam(nam);
+            var list = await dao.GetDoanhThuNam(nam);
+            return list.Sum(x => x.TongDoanhThu);
         }
 
-        public async Task<List<HoaDon_DTO>> GetTyLeThanhToanAsync()
+        public async Task<List<TK_TrangThaiHD_DTO>> GetTyLeThanhToanAsync()
         {
             return await dao.GetThongKeTrangThaiHoaDon();
+        }
+
+        public async Task<List<DoanhThuPhong_DTO>> GetDoanhThuTheoPhongAsync(DateTime tuNgay, DateTime denNgay)
+        {
+            if (tuNgay > denNgay)
+                throw new ArgumentException("Từ ngày phải nhỏ hơn đến ngày");
+
+            return await dao.GetDoanhThuTheoPhong(tuNgay, denNgay);
         }
     }
 }

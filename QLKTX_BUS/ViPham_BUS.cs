@@ -38,16 +38,17 @@ namespace QLKTX_BUS
             else if (dto.MucDo == MucDoViPham.TrungBinh)
             {
                 // Đếm số lần vi phạm Trung bình
-                int soLanBiPhat = await _vpDao.CountViPhamByUser(dto.MaSV, MucDoViPham.TrungBinh);
+                int soLanTruoc = await _vpDao.CountViPhamByUser(dto.MaSV, MucDoViPham.TrungBinh);
+                int soLanSau = soLanTruoc + 1;
 
-                if (soLanBiPhat >= 3)
+                if (soLanSau >= 3)
                 {
                     await ThanhLyHopDongCuaSV(dto.MaSV);
-                    thongBao += $" Đây là lần thứ {soLanBiPhat} vi phạm Trung bình -> Hệ thống đã tự động CHẤM DỨT HỢP ĐỒNG!";
+                    thongBao += $" Đây là lần thứ {soLanSau} vi phạm Trung bình -> Hệ thống đã tự động CHẤM DỨT HỢP ĐỒNG!";
                 }
                 else
                 {
-                    thongBao += $" Đây là lần thứ {soLanBiPhat} vi phạm Trung bình. (Quá 3 lần sẽ bị buộc thôi học).";
+                    thongBao += $" Đây là lần thứ {soLanSau} vi phạm Trung bình. (Quá 3 lần sẽ bị buộc thôi học).";
                 }
             }
             // Trường hợp 3: Nhẹ -> Chỉ nhắc nhở

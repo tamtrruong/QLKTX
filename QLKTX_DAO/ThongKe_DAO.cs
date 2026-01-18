@@ -16,19 +16,27 @@ namespace QLKTX_DAO
 
         public async Task<List<DoanhThu_DTO>> GetDoanhThuNam(int nam)
         {
-            var result = await _context.Database
-                .SqlQuery<DoanhThu_DTO>($"EXEC sp_ThongKeDoanhThuTheoNam @Nam = {nam}")
+            FormattableString sql = $"EXEC sp_ThongKeDoanhThuTheoNam @Nam = {nam}";
+            return await _context.Database
+                .SqlQuery<DoanhThu_DTO>(sql)
                 .ToListAsync();
-
-            return result;
         }
 
-        public async Task<List<HoaDon_DTO>> GetThongKeTrangThaiHoaDon()
+        public async Task<List<TK_TrangThaiHD_DTO>> GetThongKeTrangThaiHoaDon()
         {
             FormattableString sql = $"EXEC sp_ThongKeHoaDonTheoTrangThai";
 
             return await _context.Database
-                .SqlQuery<HoaDon_DTO>(sql)
+                .SqlQuery<TK_TrangThaiHD_DTO>(sql)
+                .ToListAsync();
+        }
+
+        public async Task<List<DoanhThuPhong_DTO>> GetDoanhThuTheoPhong(DateTime tuNgay, DateTime denNgay)
+        {
+            FormattableString sql =$"EXEC sp_ThongKeDoanhThuTheoPhong @TuNgay={tuNgay:yyyy-MM-dd}, @DenNgay={denNgay:yyyy-MM-dd}";
+
+            return await _context.Database
+                .SqlQuery<DoanhThuPhong_DTO>(sql)
                 .ToListAsync();
         }
     }

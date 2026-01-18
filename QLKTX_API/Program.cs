@@ -6,6 +6,7 @@ using QLKTX_BUS;
 using QLKTX_BUS.Mappings;
 using QLKTX_DAO;
 using QLKTX_DAO.Models;
+using QLKTX_DTO;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +35,7 @@ builder.Services.AddScoped<DienNuoc_DAO>();
 builder.Services.AddScoped<TaiKhoan_DAO>();
 builder.Services.AddScoped<ThongKe_DAO>();
 builder.Services.AddScoped<ViPham_DAO>();
+builder.Services.AddScoped<BangGia_DAO>();
 
 // --- BUS ---
 builder.Services.AddScoped<Sinhvien_BUS>();
@@ -44,6 +46,7 @@ builder.Services.AddScoped<DienNuoc_BUS>();
 builder.Services.AddScoped<Auth_BUS>();
 builder.Services.AddScoped<Thongke_BUS>();
 builder.Services.AddScoped<ViPham_BUS>();
+builder.Services.AddScoped<BangGia_BUS>();
 
 
 // ====================================================
