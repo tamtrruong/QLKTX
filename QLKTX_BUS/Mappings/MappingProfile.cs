@@ -79,8 +79,9 @@ namespace QLKTX_BUS.Mappings
                 .ForMember(dest => dest.MucDo, opt => opt.MapFrom(src => (MucDoViPham)src.MucDo));
             CreateMap<ViPham, ViPham_DTO>().ReverseMap();
             CreateMap<LoginRequest, TaiKhoan>();
-            CreateMap<Register_DTO, TaiKhoan>();
             CreateMap<TaiKhoan, LoginResponse>();
+            CreateMap<Register_DTO, TaiKhoan>()
+                .ForMember(dest => dest.Quyen,  opt => opt.MapFrom(src => (byte)src.VaiTro));
 
         }
     }

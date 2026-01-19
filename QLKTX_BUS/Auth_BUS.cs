@@ -2,11 +2,6 @@
 using QLKTX_DAO;
 using QLKTX_DAO.Models;
 using QLKTX_DTO.Auth;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QLKTX_BUS
 {
