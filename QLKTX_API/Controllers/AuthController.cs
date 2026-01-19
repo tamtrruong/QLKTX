@@ -19,6 +19,7 @@ public class AuthController : ControllerBase
         _config = config;
     }
 
+    [AllowAnonymous]
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
@@ -43,6 +44,7 @@ public class AuthController : ControllerBase
         return Ok(user);
     }
 
+    [AllowAnonymous]
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] Register_DTO dto)
     {
