@@ -18,8 +18,13 @@ namespace QLKTX_BUS
 
         public async Task RegisterAsync(Register_DTO dto)
         {
-            var account = map.Map<TaiKhoan>(dto);
-            account.MatKhau = BCrypt.Net.BCrypt.HashPassword(dto.MatKhau);
+            var account = new TaiKhoan
+            {
+                TenDangNhap = dto.TenDangNhap,
+                MatKhau = BCrypt.Net.BCrypt.HashPassword(dto.MatKhau),
+                Quyen = (byte)dto.VaiTro,   // ⭐ CỰC KỲ QUAN TRỌNG
+                MaSv = dto.MaSV
+            };
 
             await dao.AddAccountAsync(account);
         }

@@ -18,6 +18,7 @@ namespace QLKTX_API.Controllers
             _bus = bus;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
