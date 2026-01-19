@@ -23,6 +23,10 @@ builder.Services.AddDbContext<QLKTXContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")
     ));
 
+Console.WriteLine(
+    builder.Configuration.GetConnectionString("DefaultConnection")
+);
+
 // ====================================================
 // 2. CẤU HÌNH AUTOMAPPER
 // ====================================================
