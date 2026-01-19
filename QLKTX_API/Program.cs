@@ -14,7 +14,9 @@ var builder = WebApplication.CreateBuilder(args);
 // ====================================================
 // 1. CẤU HÌNH DATABASE
 // ====================================================
-builder.Configuration.AddEnvironmentVariables();
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: true)
+    .AddEnvironmentVariables();
 
 builder.Services.AddDbContext<QLKTXContext>(options =>
     options.UseSqlServer(
