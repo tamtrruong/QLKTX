@@ -15,6 +15,12 @@ var builder = WebApplication.CreateBuilder(args);
 // 1. CẤU HÌNH DATABASE
 // ====================================================
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new Exception("Connection string is missing!");
+}
+
 builder.Services.AddDbContext<QLKTXContext>(options =>
     options.UseSqlServer(connectionString));
 
