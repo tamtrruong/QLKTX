@@ -60,6 +60,7 @@ namespace QLKTX_API.Controllers
             return Ok("Xóa thành công");
         }
 
+        [AllowAnonymous]
         [HttpGet("test-db")]
         public IActionResult TestDb([FromServices] QLKTXContext db)
         {
