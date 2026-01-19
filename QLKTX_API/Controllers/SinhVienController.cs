@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QLKTX_BUS;
+using QLKTX_DAO.Models;
 using QLKTX_DTO.SV;
 
 namespace QLKTX_API.Controllers
@@ -58,5 +59,20 @@ namespace QLKTX_API.Controllers
             await _bus.DeleteAsync(id);
             return Ok("Xóa thành công");
         }
+
+        [HttpGet("test-db")]
+        public IActionResult TestDb([FromServices] QLKTXContext db)
+        {
+            try
+            {
+                db.Database.CanConnectAsync();
+                return Ok("DB CONNECT OK");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }
